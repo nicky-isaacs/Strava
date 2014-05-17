@@ -1,0 +1,41 @@
+<div>
+  <h2>Results</h2>
+
+  <% clubs.each do |club| %>
+  <span>
+    <h2><%= club[:name] %></h2>
+  </span>
+  <table>
+    <thead>
+      <tr>
+        <td>Name</td>
+        <td>Location</td>
+        <td>Start Time</td>
+        <td>Activity</td>
+        <td>Distance</td>
+        <td>Elevation Gain</td>
+      </tr>
+    </thead>
+    <tbody>
+
+      <% club[:activities].each do |activity| %>
+      <tr>
+        <td><%= activity[:name] %></td>
+        <td><%= activity[:location] %></td>
+        <td><%= activity[:start_date] %></td>
+        <td><%= activity[:type] %></td>
+        <td><%= activity[:distance] %></td>
+        <td><%= activity[:elevation] %></td>
+      </tr>
+      <% end %>
+
+    </tbody>
+  </table>
+  <% end %>
+
+</div>
+<script>
+$(document).ready(function(){
+    $('table').dataTable();
+});
+</script>
