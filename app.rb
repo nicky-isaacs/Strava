@@ -21,13 +21,15 @@ def create_strava_report
 
   threads=[]
 
-  for club in clubs do
+  clubs.each do |club|
     threads << Thread.new do
+      puts club
       may_activities = format_activites GNIPStrava.activities_for_club_for_may_2014(club['id'])
       begin
         club = club['name']
         club_activities << { name: club, activities: may_activities }
-      rescue
+      rescue => e
+        puts "\n\nRescued exception in activity format:\n#{e.message}\n\n"
         club_activities << { name: 'Error', activities: [] }
       end
     end
